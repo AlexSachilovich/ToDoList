@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
+import { API_KEY } from "../../constants/envValues";
 
 export class Database {
   constructor() {
     const firebaseConfig = {
-      apiKey: "",
+      apiKey: API_KEY,
       authDomain: "todolist-home-69986.firebaseapp.com",
       projectId: "todolist-home-69986",
       storageBucket: "todolist-home-69986.appspot.com",
