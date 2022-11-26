@@ -1,4 +1,13 @@
 import { initializeApp } from "firebase/app";
+import {
+  getFireStore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import { API_KEY } from "../../constants/envValues";
 
 export class Database {
@@ -14,5 +23,32 @@ export class Database {
     };
 
     const app = initializeApp(firebaseConfig);
+    this._database = getFireStore(app);
+  }
+
+  create(collectionKey, body) {
+    const collectionRef = collection(this._database, collectionKey);
+    return addDoc(collectionRef, body);
+  }
+  read(collectionKey) {
+    const collectionRef = collection(this._database, collectionKey);
+    return getDocs(collectionRef).then((documents) => {
+      return documents.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    });
+  }
+  update(collectionKey, id, body) {
+    const document = doc(this._database, collectionKey, id);
+    return updateDoc(document, body);
+  }
+  delete() {
+    const document = doc(this._database, collectionKey, id);
+    return deleteDoc(document);
+  }
+
+  static getInstance() {
+    if (!Database.instance) {
+      Database.instance = new Database();
+    }
+    return Database.instance;
   }
 }
