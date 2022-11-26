@@ -26,10 +26,10 @@ export class Component extends HTMLElement {
     this.componentWillUnMount();
   }
 
-  attributeChangeCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     this.componentWillUpdate(name, oldValue, newValue);
     this.getAttributeNames().forEach(() => {
-      this.props[(name = this.getAttribute(name))];
+      this.props[name] = this.getAttribute(name);
     });
   }
 

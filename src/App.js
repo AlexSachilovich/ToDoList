@@ -1,11 +1,12 @@
 import { Component } from "./core";
+import "./components/Button/Button";
 export class App extends Component {
   render() {
     return `
     <div class='container mt-5'>
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Add a new task" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <button class="btn btn-outline-primary" type="button" id="button-addon2">save</button>
+      <my-button content="Save" classname="btn btn-outline-primary"></my-button>
     </div>
     <ul class="list-group">
       <li class="list-group-item">
@@ -17,8 +18,8 @@ export class App extends Component {
               </label>
             </div>
             <div class='d-flex'>
-              <button type="button" class="btn btn-danger btn-sm">Delete</button>
-              <button type="button" class="btn btn-primary btn-sm">Update</button>
+              <my-button content="Update" classname="btn btn-primary btn-sm"></my-button>
+              <my-button content="Delete" classname="btn btn-danger btn-sm"></my-button>
             </div>
         </div>
       </li>
